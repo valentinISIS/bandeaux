@@ -54,14 +54,14 @@ public class Scenario {
                 verrouScenario.readLock().lock();
                 try {
                     for (ScenarioElement element : myElements) {
-                        verrouEffect.writeLock().lock();
+                        verrouEffect.readLock().lock();
                         try {
                             for (int repeats = 0; repeats < element.repeats; repeats++) {
                                 element.effect.playOn(b);
                             }
                         }
                         finally {
-                            verrouEffect.writeLock().unlock();
+                            verrouEffect.readLock().unlock();
                         }
                     }
                 } finally {
